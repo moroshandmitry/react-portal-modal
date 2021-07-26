@@ -1,4 +1,11 @@
 $danger-color: #af2b38;
+$danger-second-color: #f7071f;
+$primary-color: #065ab4;
+$primary-second-color: #097df8;
+
+// 1rem => 16px
+$font-size: 1rem;
+$border-radius: 0.4rem;
 
 .modal-back-drop {
   display: flex;
@@ -11,10 +18,10 @@ $danger-color: #af2b38;
   box-sizing: border-box;
 
   .modal-body {
-    padding: 25px;
+    padding: 2rem;
     background-color: #fff;
     margin: auto;
-    border-radius: 4px;
+    border-radius: $border-radius;
     animation: blowUpModal 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
 
     @keyframes blowUpModal {
@@ -28,63 +35,60 @@ $danger-color: #af2b38;
 
     .modal-btn {
       padding: 0.7rem;
-      font-size: 1rem;
+      font-size: $font-size;
       font-weight: 700;
       outline: 0;
       border: none;
-      border-radius: 0.3rem;
+      border-radius: $border-radius;
       color: #fff;
       cursor: pointer;
 
       &.btn-primary {
-        background-color: #065ab4;
-        border-color: #007bff;
+        background-color: $primary-color;
 
         &:hover {
-          background-color: #097df8;
+          background-color: $primary-second-color;
         }
       }
       
       &.btn-danger {
         background-color: $danger-color;
-        border-color: #dc3545;
 
         &:hover {
-          background-color: #f7071f;
+          background-color: $danger-second-color;
         }
       }
     }
 
     .modal-main {
-      color: #000;
       padding: 10px;
-      border-radius: 4px;
+      border-radius: $border-radius;
       width: 100%;
 
       .modal-main-arrow {
         margin: 0 10px 0 0;
-        font-size: 1.1rem;
+        font-size: $font-size;
       }
 
       .modal-main--input-info {
         font-weight: 700;         
-        font-size: 18px;
-        color: #065ab4;
+        font-size: $font-size;
+        color: $primary-color;
       }
 
       .modal-main-input {
         padding: 10px;
-        border-radius: 7px;
+        border-radius: $border-radius;
         outline: none;
-        border: 3px solid #065ab4;
-        color: #065ab4;
+        border: 0.2rem solid $primary-color;
+        color: $primary-color;
         font-weight: 700;         
-        font-size: 16px;
+        font-size: $font-size;
         width: 200px;
 
         &:focus {
-          border: 3px solid #097df8;
-          color: #097df8;
+          border: 0.2rem solid $primary-second-color;
+          color: $primary-second-color;
         }
       }
     }
@@ -94,14 +98,16 @@ $danger-color: #af2b38;
         align-items: center;
         justify-content: space-between;
 
-        .modal-header-heading {
+        .modal-header-heading, .modal-footer-heading  {
           margin: 0 10px 0 0px;
+        }
+
+        .modal-header-heading {
           color: $danger-color;
         }
 
         .modal-footer-heading {
-          margin: 0 10px 0 0px;
-          color: #065ab4;
+          color: $primary-color;
         }
     }
   }
