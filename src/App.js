@@ -10,7 +10,9 @@ export const App = () => {
   const [inputVal, setInputVal] = useState("");
 
   const inputRef = useRef();
-  const handleInputValue = ({ target }) => setInputVal(target.value);
+  const handleInputValue = ({ target }) => {
+    setInputVal(target.value);
+  };
 
   const handleFocusInput = () => {
     inputRef.current.focus();
@@ -24,7 +26,7 @@ export const App = () => {
   return (
     <div className="App">
       {!showModal ? (
-        <h1 style={{ color: "#af2b38" }}>Trying a modal portal!</h1>
+        <h1 style={{ color: "#065ab4" }}>Trying a modal portal!</h1>
       ) : (
         <h2 style={{ color: "#065ab4" }}>Excelent!</h2>
       )}
@@ -38,7 +40,11 @@ export const App = () => {
           inputVal={inputVal}
         />
       ) : (
-        <button className="btn btn-primary" onClick={handleShowModal}>
+        <button
+          className="btn btn-primary"
+          onClick={handleShowModal}
+          type="button"
+        >
           {!showModal && "Show"} modal
         </button>
       )}
