@@ -1,27 +1,60 @@
 import { createPortal } from "react-dom";
 import "./Modal.scss";
 
-export const Modal = ({ onShowModal }) =>
+export const Modal = ({
+  onShowModal,
+  onFocusInput,
+  onInputRef,
+  onInputTargetValue,
+  inputVal
+}) =>
   createPortal(
     <div className="modal-back-drop">
       <div className="modal-body">
         <div className="modal-header">
-          <h2 className="modal-header-heading">Modal title</h2>
-          <button className="modal-header-btn btn-danger" onClick={onShowModal}>
-            x
+          <h2 className="modal-header-heading" title="Modal title">
+            Modal title
+          </h2>
+          <button
+            className="modal-btn btn-danger"
+            onClick={onShowModal}
+            title="Close"
+          >
+            &#x2715;
           </button>
         </div>
         <div className="modal-main">
-          <h1>Attention!!!</h1>
-          <p>Very important information here and some text!</p>
+          <h1 title="Attention please">Attention!!!</h1>
+          <p title="information">
+            Very important information and some text here!
+          </p>
+          <p className="modal-main--input-info">{inputVal}</p>
+          <button
+            className="modal-btn btn-primary modal-main-arrow"
+            title="Focus on input"
+            onClick={onFocusInput}
+          >
+            Focus &#x2192;
+          </button>
+
+          <input
+            ref={onInputRef}
+            className="modal-main-input"
+            type="text"
+            placeholder="Some text here..."
+            onChange={onInputTargetValue}
+          />
         </div>
         <div className="modal-footer">
-          <h2 className="modal-footer-heading">Footer and some text</h2>
+          <h2 className="modal-footer-heading" title="Footer and some text">
+            Footer and some text
+          </h2>
           <button
-            className="modal-header-btn btn-primary"
+            className="modal-btn btn-primary"
             onClick={onShowModal}
+            title="Submit"
           >
-            Ok
+            &#x2713;
           </button>
         </div>
       </div>
