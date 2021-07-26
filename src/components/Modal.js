@@ -28,7 +28,12 @@ export const Modal = ({
           <p title="information">
             Very important information and some text here!
           </p>
-          <p className="modal-main--input-info">{inputVal}</p>
+          <p
+            style={inputVal ? { display: "flex" } : { display: "none" }}
+            className="modal-main--input-info"
+          >
+            {inputVal}
+          </p>
           <button
             className="modal-btn btn-primary modal-main-arrow"
             title="Focus on input"
