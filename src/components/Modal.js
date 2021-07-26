@@ -4,8 +4,8 @@ import "./Modal.scss";
 export const Modal = ({
   onShowModal,
   onFocusInput,
-  onInputRef,
-  onInputTargetValue,
+  onInputValue,
+  inputRef,
   inputVal
 }) =>
   createPortal(
@@ -37,11 +37,11 @@ export const Modal = ({
             Focus &#x2192;
           </button>
           <input
-            ref={onInputRef}
+            ref={inputRef}
             className="modal-main-input"
             type="text"
             placeholder="Some text here..."
-            onChange={onInputTargetValue}
+            onChange={onInputValue}
           />
         </div>
         <div className="modal-footer">

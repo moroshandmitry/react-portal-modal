@@ -10,7 +10,7 @@ export const App = () => {
   const [inputVal, setInputVal] = useState("");
 
   const inputRef = useRef();
-  const inputTargetValue = ({ target }) => setInputVal(target.value);
+  const handleInputValue = ({ target }) => setInputVal(target.value);
 
   const handleFocusInput = () => {
     inputRef.current.focus();
@@ -33,9 +33,9 @@ export const App = () => {
         <Modal
           onShowModal={handleShowModal}
           onFocusInput={handleFocusInput}
-          onInputRef={inputRef}
+          inputRef={inputRef}
+          onInputValue={handleInputValue}
           inputVal={inputVal}
-          onInputTargetValue={inputTargetValue}
         />
       ) : (
         <button className="btn btn-primary" onClick={handleShowModal}>
