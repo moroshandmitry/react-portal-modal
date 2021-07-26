@@ -61,13 +61,15 @@ $border-radius: 0.4rem;
     }
 
     .modal-main {
-      padding: 10px;
+      padding: 25px;
       border-radius: $border-radius;
       width: 100%;
+      box-sizing: border-box;
 
       .modal-main-arrow {
         margin: 0 10px 0 0;
         font-size: $font-size;
+        height: 49px;
       }
 
       .modal-main--input-info {
@@ -84,7 +86,7 @@ $border-radius: 0.4rem;
         color: $primary-color;
         font-weight: 700;         
         font-size: $font-size;
-        width: 200px;
+        width: 250px;
 
         &:focus {
           border: 0.2rem solid $primary-second-color;

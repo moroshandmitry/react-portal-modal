@@ -36,7 +36,6 @@ export const Modal = ({
           >
             Focus &#x2192;
           </button>
-
           <input
             ref={onInputRef}
             className="modal-main-input"
