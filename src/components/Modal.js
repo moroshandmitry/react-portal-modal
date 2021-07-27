@@ -10,8 +10,7 @@ export const Modal = ({ onToggleShowModal }) => {
 
   // Email validation
   const [email, setEmail] = useState("");
-  const [emailDirty, setEmailDirty] = useState(true);
-  const [emailError, setEmailError] = useState("Email can't be empty");
+  const [emailError, setEmailError] = useState(false);
   // Email validation
 
   console.log("renders Modal");
@@ -28,30 +27,27 @@ export const Modal = ({ onToggleShowModal }) => {
   // input value + focus in tag <p>output value above</p>
 
   // Email validation
-  const REGULAR_EMAIL_PATTERN = /^[a-z0-9._-]+@[a-z]+\.[a-z]{2,3}$/g;
-  const handleBlurEmail = ({ target }) => {
-    if (target.name) setEmailDirty(true);
-    else setEmail("");
+  const handleInputEmail = (event) => {
+    setEmail(event.target.value);
+    setEmailError(false);
   };
 
-  const handleInputEmail = ({ target }) => {
-    setEmail(target.value);
-    if (!REGULAR_EMAIL_PATTERN.test(String(target.value).toLowerCase())) {
-      setEmailError("Incorrect E-Mail Address");
-    } else setEmailError("");
+  const handleBlurEmail = (event) => {
+    const EMAIL_PATTERN = /^[a-z0-9._-]+@[a-z]+\.[a-z]{2,3}$/g;
+    const validation = EMAIL_PATTERN.test(String(event.target.value));
+
+    if (validation) {
+      setEmailError(false);
+    } else {
+      setEmailError(true);
+    }
   };
   // Email validation
 
   // Show Modal
-  const handleShowModal = (e) => {
+  const handleShowModal = () => {
     onToggleShowModal();
     setInputVal("");
-
-    if (!REGULAR_EMAIL_PATTERN.test(String(e.target.value).toLowerCase())) {
-      setEmailError("Incorrect E-Mail Address");
-      setEmailDirty(true);
-      setEmail("");
-    }
   };
   // Show Modal
 
@@ -99,15 +95,7 @@ export const Modal = ({ onToggleShowModal }) => {
           </div>
 
           <input
-            className={
-              "modal-main-input--email" +
-              (emailError && emailDirty ? "-err" : "")
-            }
-            // className={`${
-            //   emailError && emailDirty
-            //     ? "modal-main-input--email-err"
-            //     : "modal-main-input--email"
-            // }`}
+            className={"modal-main-input--email" + (emailError ? "-err" : "")}
             onChange={handleInputEmail}
             onBlur={handleBlurEmail}
             value={email}
@@ -117,16 +105,20 @@ export const Modal = ({ onToggleShowModal }) => {
             title="Please provide e-mail address"
             autoComplete="off"
           />
-          {emailDirty && emailError && (
-            <div style={{ color: "red", fontWeight: 700 }}>{emailError}</div>
-          )}
+          <div>
+            {emailError ? (
+              <div className="modal-main-error">Incorrect E-Mail Address</div>
+            ) : (
+              <div className="modal-main-success">example@gmail.com</div>
+            )}
+          </div>
         </div>
         <div className="modal-footer">
           <h2 className="modal-footer-heading" title="Footer and some text">
             Footer subscribe
           </h2>
           <button
-            disabled={emailDirty && emailError}
+            disabled={emailError || email === ""}
             className="modal-btn btn-primary"
             onClick={handleShowModal}
             title="Submit"

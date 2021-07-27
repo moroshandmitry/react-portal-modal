@@ -115,6 +115,20 @@ $border-radius: 0.4rem;
       //.modal-main--input-block
       }
 
+      .modal-main-error, .modal-main-success {
+        font-weight: 700;         
+        font-size: $font-size;
+      }
+
+      .modal-main-error {
+        color: $danger-color;
+      }
+
+      .modal-main-success {
+        color: $primary-color;
+      }
+
+
       .modal-main-input--email {
         @include input($border-radius, $primary-color, $font-size);
         box-sizing: border-box;
@@ -133,7 +147,6 @@ $border-radius: 0.4rem;
   
       }
 
-      
     //.modal-main
     }
   
