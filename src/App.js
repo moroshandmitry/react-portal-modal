@@ -7,6 +7,8 @@ import "./styles.scss";
 export const App = () => {
   const [showModal, setShowModal] = useState(true);
 
+  console.log("renders App");
+
   const handleToggleShowModal = () => {
     setShowModal((prev) => !prev);
   };

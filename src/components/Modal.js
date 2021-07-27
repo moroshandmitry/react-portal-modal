@@ -14,6 +14,8 @@ export const Modal = ({ onToggleShowModal }) => {
   const [emailError, setEmailError] = useState("Email can't be empty");
   // Email validation
 
+  console.log("renders Modal");
+
   // input value + focus in tag <p>output value above</p>
   const inputRef = useRef();
   const handleFocusInput = () => {
@@ -70,7 +72,7 @@ export const Modal = ({ onToggleShowModal }) => {
         </div>
         <div className="modal-main">
           <h1 title="Attention please">Attention!!!</h1>
-          <p title="information">
+          <p className="modal-main-text" title="information">
             Very important information and some text here!
           </p>
           <p

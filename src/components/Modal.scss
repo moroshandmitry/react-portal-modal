@@ -83,6 +83,10 @@ $border-radius: 0.4rem;
       border-radius: $border-radius;
       box-sizing: border-box;
 
+      .modal-main-text {
+        font-size: $font-size;
+      }
+
       .modal-main--input-info {
         font-weight: 700;         
         font-size: $font-size;
