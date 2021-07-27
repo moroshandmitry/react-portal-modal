@@ -7,14 +7,14 @@ $primary-second-color: #097df8;
 $font-size: 1rem;
 $border-radius: 0.4rem;
 
-@mixin input {
+@mixin input($borderRad, $color, $fontSize) {
   padding: 10px;
-  border-radius: $border-radius;
+  border-radius: $borderRad;
   outline: none;
-  border: 0.2rem solid $primary-color;
-  color: $primary-color;
+  border: 0.2rem solid $color;
+  color: $color;
   font-weight: 700;         
-  font-size: $font-size;
+  font-size: $fontSize;
   width: 100%;
 }
 
@@ -103,7 +103,7 @@ $border-radius: 0.4rem;
         }
 
         .modal-main-input {
-          @include input;
+          @include input($border-radius, $primary-color, $font-size);
   
           &:focus {
             border: 0.2rem solid $primary-second-color;
@@ -116,19 +116,12 @@ $border-radius: 0.4rem;
       }
 
       .modal-main-input--email {
-        @include input;
+        @include input($border-radius, $primary-color, $font-size);
         box-sizing: border-box;
         margin: 15px 0 0 0;
 
         &-err {
-          padding: 10px;
-          border-radius: $border-radius;
-          outline: none;
-          border: 0.2rem solid $danger-color;
-          color: $danger-color;
-          font-weight: 700;         
-          font-size: $font-size;
-          width: 100%;
+          @include input($border-radius, $danger-color, $font-size);
           box-sizing: border-box;
           margin: 15px 0 0 0;
         }
