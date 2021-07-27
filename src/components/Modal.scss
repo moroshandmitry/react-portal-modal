@@ -104,6 +104,10 @@ $border-radius: 0.4rem;
 
         .modal-main-input {
           @include input($border-radius, $primary-color, $font-size);
+
+          &::placeholder {
+            color: $primary-color;
+          }
   
           &:focus {
             border: 0.2rem solid $primary-second-color;
@@ -134,10 +138,18 @@ $border-radius: 0.4rem;
         box-sizing: border-box;
         margin: 15px 0 0 0;
 
+        &::placeholder {
+          color: $primary-color;
+        }
+
         &-err {
           @include input($border-radius, $danger-color, $font-size);
           box-sizing: border-box;
           margin: 15px 0 0 0;
+
+          &::placeholder {
+            color: $danger-color;
+          }
         }
 
         &:focus {
