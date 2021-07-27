@@ -1,23 +1,36 @@
-import { useState } from "react";
-
-import { useRef } from "react";
-
+import { useState, useRef } from "react";
 import { createPortal } from "react-dom";
+
 import "./Modal.scss";
 
 export const Modal = ({ onToggleShowModal }) => {
+  // input value
   const [inputVal, setInputVal] = useState("");
+  // input value
 
+  // Email validation
   const [email, setEmail] = useState("");
   const [emailDirty, setEmailDirty] = useState(true);
   const [emailError, setEmailError] = useState("Email can't be empty");
+  // Email validation
 
+  // input value + focus in tag <p>output value above</p>
+  const inputRef = useRef();
+  const handleFocusInput = () => {
+    inputRef.current.focus();
+  };
+
+  const handleInputValue = ({ target }) => {
+    setInputVal(target.value);
+  };
+  // input value + focus in tag <p>output value above</p>
+
+  // Email validation
+  const REGULAR_EMAIL_PATTERN = /^[a-z0-9._-]+@[a-z]+\.[a-z]{2,3}$/g;
   const handleBlurEmail = ({ target }) => {
     if (target.name) setEmailDirty(true);
     else setEmail("");
   };
-
-  const REGULAR_EMAIL_PATTERN = /^[a-z0-9._-]+@[a-z]+\.[a-z]{2,3}$/g;
 
   const handleInputEmail = ({ target }) => {
     setEmail(target.value);
@@ -25,16 +38,9 @@ export const Modal = ({ onToggleShowModal }) => {
       setEmailError("Incorrect E-Mail Address");
     } else setEmailError("");
   };
+  // Email validation
 
-  const inputRef = useRef();
-  const handleInputValue = ({ target }) => {
-    setInputVal(target.value);
-  };
-
-  const handleFocusInput = () => {
-    inputRef.current.focus();
-  };
-
+  // Show Modal
   const handleShowModal = (e) => {
     onToggleShowModal();
     setInputVal("");
@@ -45,6 +51,7 @@ export const Modal = ({ onToggleShowModal }) => {
       setEmail("");
     }
   };
+  // Show Modal
 
   return (
     <div className="modal-back-drop">
