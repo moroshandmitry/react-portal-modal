@@ -1,26 +1,14 @@
 import { useState } from "react";
 
-import { useRef } from "react";
 import { Modal } from "./components/Modal";
 
 import "./styles.scss";
 
 export const App = () => {
   const [showModal, setShowModal] = useState(true);
-  const [inputVal, setInputVal] = useState("");
 
-  const inputRef = useRef();
-  const handleInputValue = ({ target }) => {
-    setInputVal(target.value);
-  };
-
-  const handleFocusInput = () => {
-    inputRef.current.focus();
-  };
-
-  const handleShowModal = () => {
+  const handleToggleShowModal = () => {
     setShowModal((prev) => !prev);
-    setInputVal("");
   };
 
   return (
@@ -32,17 +20,11 @@ export const App = () => {
       )}
 
       {showModal ? (
-        <Modal
-          onShowModal={handleShowModal}
-          onFocusInput={handleFocusInput}
-          inputRef={inputRef}
-          onInputValue={handleInputValue}
-          inputVal={inputVal}
-        />
+        <Modal onToggleShowModal={handleToggleShowModal} />
       ) : (
         <button
           className="btn btn-primary"
-          onClick={handleShowModal}
+          onClick={handleToggleShowModal}
           type="button"
         >
           {!showModal && "Show"} modal

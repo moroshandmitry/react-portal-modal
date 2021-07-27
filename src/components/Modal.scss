@@ -7,6 +7,17 @@ $primary-second-color: #097df8;
 $font-size: 1rem;
 $border-radius: 0.4rem;
 
+@mixin input {
+  padding: 10px;
+  border-radius: $border-radius;
+  outline: none;
+  border: 0.2rem solid $primary-color;
+  color: $primary-color;
+  font-weight: 700;         
+  font-size: $font-size;
+  width: 100%;
+}
+
 .modal-back-drop {
   display: flex;
   position: fixed;
@@ -49,8 +60,13 @@ $border-radius: 0.4rem;
         &:hover {
           background-color: $primary-second-color;
         }
+
+        &:disabled {
+          background-color: rgba($primary-second-color, 0.5);
+          cursor: not-allowed;
+        }
       }
-      
+
       &.btn-danger {
         background-color: $danger-color;
 
@@ -83,14 +99,7 @@ $border-radius: 0.4rem;
         }
 
         .modal-main-input {
-          padding: 10px;
-          border-radius: $border-radius;
-          outline: none;
-          border: 0.2rem solid $primary-color;
-          color: $primary-color;
-          font-weight: 700;         
-          font-size: $font-size;
-          width: 100%;
+          @include input;
   
           &:focus {
             border: 0.2rem solid $primary-second-color;
@@ -102,6 +111,32 @@ $border-radius: 0.4rem;
       //.modal-main--input-block
       }
 
+      .modal-main-input--email {
+        @include input;
+        box-sizing: border-box;
+        margin: 15px 0 0 0;
+
+        &-err {
+          padding: 10px;
+          border-radius: $border-radius;
+          outline: none;
+          border: 0.2rem solid $danger-color;
+          color: $danger-color;
+          font-weight: 700;         
+          font-size: $font-size;
+          width: 100%;
+          box-sizing: border-box;
+          margin: 15px 0 0 0;
+        }
+
+        &:focus {
+          border: 0.2rem solid $primary-second-color;
+          color: $primary-second-color;
+        }
+  
+      }
+
+      
     //.modal-main
     }
   

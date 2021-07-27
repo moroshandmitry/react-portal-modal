@@ -1,14 +1,52 @@
+import { useState } from "react";
+
+import { useRef } from "react";
+
 import { createPortal } from "react-dom";
 import "./Modal.scss";
 
-export const Modal = ({
-  onShowModal,
-  onFocusInput,
-  onInputValue,
-  inputRef,
-  inputVal
-}) =>
-  createPortal(
+export const Modal = ({ onToggleShowModal }) => {
+  const [inputVal, setInputVal] = useState("");
+
+  const [email, setEmail] = useState("");
+  const [emailDirty, setEmailDirty] = useState(true);
+  const [emailError, setEmailError] = useState("Email can't be empty");
+
+  const handleBlurEmail = ({ target }) => {
+    if (target.name) setEmailDirty(true);
+    else setEmail("");
+  };
+
+  const REGULAR_EMAIL_PATTERN = /^[a-z0-9._-]+@[a-z]+\.[a-z]{2,3}$/g;
+
+  const handleInputEmail = ({ target }) => {
+    setEmail(target.value);
+    if (!REGULAR_EMAIL_PATTERN.test(String(target.value).toLowerCase())) {
+      setEmailError("Incorrect E-Mail Address");
+    } else setEmailError("");
+  };
+
+  const inputRef = useRef();
+  const handleInputValue = ({ target }) => {
+    setInputVal(target.value);
+  };
+
+  const handleFocusInput = () => {
+    inputRef.current.focus();
+  };
+
+  const handleShowModal = (e) => {
+    onToggleShowModal();
+    setInputVal("");
+
+    if (!REGULAR_EMAIL_PATTERN.test(String(e.target.value).toLowerCase())) {
+      setEmailError("Incorrect E-Mail Address");
+      setEmailDirty(true);
+      setEmail("");
+    }
+  };
+
+  return (
     <div className="modal-back-drop">
       <div className="modal-body">
         <div className="modal-header">
@@ -17,7 +55,7 @@ export const Modal = ({
           </h2>
           <button
             className="modal-btn btn-danger"
-            onClick={onShowModal}
+            onClick={handleShowModal}
             title="Close"
           >
             &#x2715;
@@ -38,7 +76,7 @@ export const Modal = ({
             <button
               className="modal-btn btn-primary modal-main-arrow"
               title="Focus on input"
-              onClick={onFocusInput}
+              onClick={handleFocusInput}
             >
               Focus &#x2192;
             </button>
@@ -47,23 +85,49 @@ export const Modal = ({
               className="modal-main-input"
               type="text"
               placeholder="Some text here..."
-              onChange={onInputValue}
+              onChange={handleInputValue}
             />
           </div>
+
+          <input
+            className={
+              "modal-main-input--email" +
+              (emailError && emailDirty ? "-err" : "")
+            }
+            // className={`${
+            //   emailError && emailDirty
+            //     ? "modal-main-input--email-err"
+            //     : "modal-main-input--email"
+            // }`}
+            onChange={handleInputEmail}
+            onBlur={handleBlurEmail}
+            value={email}
+            type="email"
+            name="email"
+            placeholder="E-mail"
+            title="Please provide e-mail address"
+            autoComplete="off"
+          />
+          {emailDirty && emailError && (
+            <div style={{ color: "red", fontWeight: 700 }}>{emailError}</div>
+          )}
         </div>
         <div className="modal-footer">
           <h2 className="modal-footer-heading" title="Footer and some text">
-            Footer and some text
+            Footer subscribe
           </h2>
           <button
+            disabled={emailDirty && emailError}
             className="modal-btn btn-primary"
-            onClick={onShowModal}
+            onClick={handleShowModal}
             title="Submit"
           >
             &#x2713;
           </button>
         </div>
       </div>
-    </div>,
-    document.getElementById("portal-root")
+    </div>
   );
+};
+
+createPortal(<Modal />, document.getElementById("portal-root"));
