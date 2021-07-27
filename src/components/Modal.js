@@ -34,20 +34,22 @@ export const Modal = ({
           >
             {inputVal}
           </p>
-          <button
-            className="modal-btn btn-primary modal-main-arrow"
-            title="Focus on input"
-            onClick={onFocusInput}
-          >
-            Focus &#x2192;
-          </button>
-          <input
-            ref={inputRef}
-            className="modal-main-input"
-            type="text"
-            placeholder="Some text here..."
-            onChange={onInputValue}
-          />
+          <div className="modal-main--input-block">
+            <button
+              className="modal-btn btn-primary modal-main-arrow"
+              title="Focus on input"
+              onClick={onFocusInput}
+            >
+              Focus &#x2192;
+            </button>
+            <input
+              ref={inputRef}
+              className="modal-main-input"
+              type="text"
+              placeholder="Some text here..."
+              onChange={onInputValue}
+            />
+          </div>
         </div>
         <div className="modal-footer">
           <h2 className="modal-footer-heading" title="Footer and some text">

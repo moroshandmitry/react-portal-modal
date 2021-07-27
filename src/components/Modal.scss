@@ -61,16 +61,11 @@ $border-radius: 0.4rem;
     }
 
     .modal-main {
+      display: flex;
+      flex-direction: column;
       padding: 25px;
       border-radius: $border-radius;
-      width: 100%;
       box-sizing: border-box;
-
-      .modal-main-arrow {
-        margin: 0 10px 0 0;
-        font-size: $font-size;
-        height: 49px;
-      }
 
       .modal-main--input-info {
         font-weight: 700;         
@@ -78,21 +73,36 @@ $border-radius: 0.4rem;
         color: $primary-color;
       }
 
-      .modal-main-input {
-        padding: 10px;
-        border-radius: $border-radius;
-        outline: none;
-        border: 0.2rem solid $primary-color;
-        color: $primary-color;
-        font-weight: 700;         
-        font-size: $font-size;
-        width: 250px;
+      .modal-main--input-block {
+        display: flex;
 
-        &:focus {
-          border: 0.2rem solid $primary-second-color;
-          color: $primary-second-color;
+        .modal-main-arrow {
+          margin: 0 10px 0 0;
+          font-size: $font-size;
+          height: 49px;
         }
+
+        .modal-main-input {
+          padding: 10px;
+          border-radius: $border-radius;
+          outline: none;
+          border: 0.2rem solid $primary-color;
+          color: $primary-color;
+          font-weight: 700;         
+          font-size: $font-size;
+          width: 100%;
+  
+          &:focus {
+            border: 0.2rem solid $primary-second-color;
+            color: $primary-second-color;
+          }
+        //.modal-main-input
+        }
+
+      //.modal-main--input-block
       }
+
+    //.modal-main
     }
   
     .modal-header, .modal-footer {
