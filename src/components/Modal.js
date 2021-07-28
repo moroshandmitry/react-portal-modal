@@ -11,6 +11,7 @@ export const Modal = ({ onToggleShowModal }) => {
   // Email validation
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
+  const [notValidChar, setNotValidChar] = useState("");
   // Email validation
 
   console.log("renders Modal");
@@ -28,6 +29,9 @@ export const Modal = ({ onToggleShowModal }) => {
 
   // Email validation
   const handleInputEmail = (event) => {
+    const NOT_VALID_CHARS_PATTERT = /[а-яА-Я`!#$%^&*()+=[\]{};':"\\|,<>/?~]/g;
+    setNotValidChar(event.target.value.match(NOT_VALID_CHARS_PATTERT));
+
     setEmail(event.target.value);
     setEmailError(false);
   };
@@ -35,12 +39,7 @@ export const Modal = ({ onToggleShowModal }) => {
   const handleBlurEmail = (event) => {
     const EMAIL_PATTERN = /^[a-z0-9._-]+@[a-z]+\.[a-z]{2,3}$/g;
     const validation = EMAIL_PATTERN.test(String(event.target.value));
-
-    if (validation) {
-      setEmailError(false);
-    } else {
-      setEmailError(true);
-    }
+    validation ? setEmailError(false) : setEmailError(true);
   };
   // Email validation
 
@@ -108,6 +107,8 @@ export const Modal = ({ onToggleShowModal }) => {
           <div>
             {emailError ? (
               <div className="modal-main-error">Incorrect E-Mail Address</div>
+            ) : notValidChar ? (
+              <div className="modal-main-error">{`Please don't use russian letters or special symbols like this \`!#$%^&*()+=[]{};':"\\|,<>/?~`}</div>
             ) : (
               <div className="modal-main-success">example@gmail.com</div>
             )}
