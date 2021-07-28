@@ -37,7 +37,7 @@ export const Modal = ({ onToggleShowModal }) => {
   };
 
   const handleBlurEmail = (event) => {
-    const EMAIL_PATTERN = /^[a-z0-9._-]+@[a-z]+\.[a-z]{2,3}$/g;
+    const EMAIL_PATTERN = /^[a-z0-9._-]+@[a-z]+\.[a-z]{2,4}$/g;
     const validation = EMAIL_PATTERN.test(String(event.target.value));
     validation ? setEmailError(false) : setEmailError(true);
   };
